@@ -1,4 +1,7 @@
 {
   "author": "Sharmaine Lim",
-  "name": "sharmainelim.github.io"
+  "name": "sharmainelim.github.io",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }

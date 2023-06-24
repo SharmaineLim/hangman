@@ -1,0 +1,11 @@
+{
+  "author": "Sharmaine Lim",
+  "name": "sharmainelim.github.io",
+  "scripts": {
+    "format": "prettier --write '**/?(.)*.{css,js,json,md,scss,ts,tsx,yaml,yml}'",
+    "lint:format": "prettier --check '**/?(.)*.{css,js,json,md,scss,ts,tsx,yaml,yml}'"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}

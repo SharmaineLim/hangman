@@ -13,7 +13,7 @@ If you already have Node.js set up
 - run `npm install` to install the dependencies, and then
 - run `npm run dev`.
 
-You should now be able to access the site at http://localhost:5173/.
+You should now be able to access the site at http://localhost:5173/hangman/.
 
 ## Deploy to GitHub Pages
 

@@ -59,7 +59,11 @@ const drawEyes = (ctx: CanvasRenderingContext2D) => {
     ctx.fillText('X X', 80, 50);
 };
 
-const Hangman = () => {
+type HangmanProps = {
+    incorrectGuesses: number;
+};
+
+const Hangman = ({ incorrectGuesses }: HangmanProps) => {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
     React.useEffect(() => {
@@ -70,14 +74,17 @@ const Hangman = () => {
         if (!context) return;
 
         drawGallow(context);
-        drawHead(context);
-        drawTorso(context);
-        drawLeftArm(context);
-        drawRightArm(context);
-        drawLeftLeg(context);
-        drawRightLeg(context);
-        drawEyes(context);
-    }, []);
+
+        if (incorrectGuesses > 0) drawHead(context);
+        if (incorrectGuesses > 1) drawTorso(context);
+        if (incorrectGuesses > 2) drawLeftArm(context);
+        if (incorrectGuesses > 3) drawRightArm(context);
+        if (incorrectGuesses > 4) drawLeftLeg(context);
+        if (incorrectGuesses > 5) {
+            drawRightLeg(context);
+            drawEyes(context);
+        }
+    }, [incorrectGuesses]);
 
     return (
         <div className="flex justify-center">

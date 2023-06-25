@@ -1,4 +1,5 @@
 import React from 'react';
+import Hangman from './components/Hangman';
 import Keyboard from './components/Keyboard/Keyboard';
 import Phrase from './components/Phrase/Phrase';
 import { KeysPressedContext } from './contexts';
@@ -17,6 +18,7 @@ const App = () => {
 
     return (
         <div className="space-y-12">
+            <Hangman />
             <KeysPressedContext.Provider value={keysPressed}>
                 <Phrase phrase="guess the phrase" />
                 <Keyboard handler={handleKeyClick} />

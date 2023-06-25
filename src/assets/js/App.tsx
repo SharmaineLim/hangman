@@ -1,7 +1,12 @@
 import React from 'react';
+import Phrase from './components/Phrase/Phrase';
 
 const App = () => {
-    return <p>Hello world.</p>;
+    return (
+        <div>
+            <Phrase phrase="guess the phrase" />
+        </div>
+    );
 };
 
 export default App;

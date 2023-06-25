@@ -8,7 +8,7 @@ repos:
     hooks:
       - id: eslint
         types: [file]
-        files: \.(js|jsx|ts|tsx)$
+        files: src\/\S*\.(js|ts|tsx)$
         args: [--report-unused-disable-directives]
         additional_dependencies:
           # Use the same versions as the project’s package-lock.json.

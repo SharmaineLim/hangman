@@ -1,6 +1,6 @@
 {
   "author": "Sharmaine Lim",
-  "name": "sharmainelim.github.io",
+  "name": "hangman",
   "scripts": {
     "format": "prettier --write '**/?(.)*.{css,js,json,md,scss,ts,tsx,yaml,yml}'",
     "lint:format": "prettier --check '**/?(.)*.{css,js,json,md,scss,ts,tsx,yaml,yml}'"

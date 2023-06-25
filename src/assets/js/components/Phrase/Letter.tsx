@@ -1,4 +1,5 @@
 import React from 'react';
+import { KeysPressedContext } from '../../contexts';
 
 const COLOR_STYLES = 'border-b-4 border-black';
 const CONTAINER_STYLES = 'flex justify-center m-1 w-6 sm:w-8';
@@ -11,7 +12,9 @@ type LetterProps = {
 };
 
 const Letter = ({ letter, letterIndex }: LetterProps) => {
-    const isShown = false;
+    // Check if the key for this letter has already been pressed.
+    const keysPressed = React.useContext(KeysPressedContext);
+    const isShown = keysPressed && keysPressed.includes(letter);
 
     // Set up styles.
     const styles = [

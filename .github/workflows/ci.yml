@@ -1,4 +1,4 @@
-name: Test
+name: Test, Build & Deploy
 
 on:
   # Runs when a pull request targeting the default branch is made.
@@ -45,3 +45,53 @@ jobs:
       # Run linters.
       - name: Lint
         run: npm run lint
+
+  # Build the files and deploy to Pages
+  build-and-deploy:
+    # Only allow one instance of this workflow to run at a time per branch
+    # to prevent double deployments
+    concurrency: ci-${{ github.ref }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Only run this on the main branch.
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: ['check-code']
+    runs-on: ubuntu-latest
+    steps:
+      # Checks out your repository, so your workflow can access it.
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Set up Node.js for building JS files.
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # Get cached & install node dependencies.
+      # https://github.com/actions/cache
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: v3-npm-deps-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: v3-npm-deps-
+      - name: Install node dependencies
+        run: npm ci --no-optional --no-audit --progress=false
+
+      # This project is built using npm & vite and
+      # # outputs the result to the 'dist' folder.
+      - name: Build static files
+        run: npm run build
+
+      # Automatically deploy your project to GitHub Pages.
+      # https://github.com/JamesIves/github-pages-deploy-action
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # The folder the action should deploy.
+          folder: dist
+          # (Do not) Force-push new deployments to overwrite the previous version
+          force: false

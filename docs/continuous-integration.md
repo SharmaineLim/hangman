@@ -1,5 +1,10 @@
 # Continuous Integration
 
+## Deployment workflow
+
+All commits pushed to the `main` branch will trigger the deployment workflow
+and update the live site.
+
 ## Git branching
 
 1. Branch off from the `main` branch.
@@ -8,6 +13,8 @@
 4. Make a pull request against the `main` branch.
 
 ## Code styleguide
+
+### Formatters
 
 This project uses the following tools to enforce code style formatting:
 
@@ -18,7 +25,19 @@ files, or to manually run them before committing:
 
 - `npm run format` for Prettier
 
-## Automatic linting locally
+### Linters
+
+This project also uses the following linters:
+
+- [ESLint](https://eslint.org/) for Javascript
+
+These can be manually run with:
+
+- `npm run lint:js`
+
+All the linters can also be run at once with `npm run lint`.
+
+## Automatic formatting & linting locally
 
 You can also run the linting tests automatically before committing. This is
 optional. It uses pre-commit, for which a .pre-commit-config.yml file is

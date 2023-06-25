@@ -20,3 +20,4 @@ This project requires the following to be installed:
    for more details about available commands.
 
 1. Install the npm dependencies with `npm install`.
+1. Run `npm run dev` to build development assets and run the server using vite.

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import '../css/index.css';
+import '../css/main.css';
 
 // Render apps only once DOM content has finished loading.
 document.addEventListener('DOMContentLoaded', () => {

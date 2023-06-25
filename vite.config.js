@@ -1,10 +1,14 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
-    root: 'src',
+    // We set this because Github Pages will host this project in a subpath.
     base: '/hangman/',
+
+    root: 'src',
     build: {
+        minify: true,
         outDir: './../dist',
         rollupOptions: {
             input: {
@@ -12,4 +16,9 @@ export default defineConfig({
             },
         },
     },
+    plugins: [
+        createHtmlPlugin({
+            minify: true,
+        }),
+    ],
 });

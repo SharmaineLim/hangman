@@ -1,0 +1,4 @@
+# Files that prettier should ignore.
+
+# Compiled files
+dist/

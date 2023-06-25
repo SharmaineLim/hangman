@@ -6,6 +6,7 @@
     "lint": "npm-run-all lint:js lint:format",
     "lint:format": "prettier --check '**/?(.)*.{css,js,json,md,scss,ts,tsx,yaml,yml}'",
     "lint:js": "eslint 'src/assets/js/**/**' --ignore-pattern **/vendor/**/**",
+    "/* use vite --host to expose the server to your network */": "",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

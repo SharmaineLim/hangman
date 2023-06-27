@@ -65,6 +65,8 @@ type HangmanProps = {
 
 const Hangman = ({ incorrectGuesses }: HangmanProps) => {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
+    const [accessibilityText, setAccessibilityText] =
+        React.useState('An empty gallow.');
 
     React.useEffect(() => {
         const canvas = canvasRef.current;
@@ -74,21 +76,45 @@ const Hangman = ({ incorrectGuesses }: HangmanProps) => {
         if (!context) return;
 
         drawGallow(context);
+        if (incorrectGuesses < 1) return;
 
-        if (incorrectGuesses > 0) drawHead(context);
-        if (incorrectGuesses > 1) drawTorso(context);
-        if (incorrectGuesses > 2) drawLeftArm(context);
-        if (incorrectGuesses > 3) drawRightArm(context);
-        if (incorrectGuesses > 4) drawLeftLeg(context);
-        if (incorrectGuesses > 5) {
-            drawRightLeg(context);
-            drawEyes(context);
-        }
+        drawHead(context);
+        setAccessibilityText('A gallow with a head.');
+        if (incorrectGuesses < 2) return;
+
+        drawTorso(context);
+        setAccessibilityText('A gallow with a head and a torso.');
+        if (incorrectGuesses < 3) return;
+
+        drawLeftArm(context);
+        setAccessibilityText('A gallow with a head, a torso, and a left arm.');
+        if (incorrectGuesses < 4) return;
+
+        drawRightArm(context);
+        setAccessibilityText('A gallow with a head, a torso, and both arms.');
+        if (incorrectGuesses < 5) return;
+
+        drawLeftLeg(context);
+        setAccessibilityText(
+            'A gallow with a head, a torso, both arms, and a left leg.',
+        );
+        if (incorrectGuesses < 6) return;
+
+        drawRightLeg(context);
+        drawEyes(context);
+        setAccessibilityText('A gallow with a dead man.');
     }, [incorrectGuesses]);
 
     return (
         <div className="flex justify-center">
-            <canvas height="200" id="hangman" ref={canvasRef} width="150" />
+            <canvas
+                aria-label={accessibilityText}
+                height="200"
+                id="hangman"
+                ref={canvasRef}
+                role="img"
+                width="150"
+            />
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import GameOver from './components/Modal/Content/GameOver';
 import Hangman from './components/Hangman';
 import Keyboard from './components/Keyboard/Keyboard';
 import Modal from './components/Modal/Modal';
@@ -9,10 +10,10 @@ import { KeysPressedContext } from './contexts';
 const MODAL_OPEN_STYLES = 'h-screen overflow-hidden';
 
 const App = () => {
-    const phrase = 'guess the phrase';
+    const phrase = 'guess the phrase'.toUpperCase();
 
     // Get the phrase as an array of characters.
-    const phraseCharacters = phrase.toUpperCase().split('');
+    const phraseCharacters = phrase.split('');
 
     // Keep track of the number of incorrect guesses.
     const [incorrectGuesses, setIncorrectGuesses] = React.useState(0);
@@ -40,7 +41,7 @@ const App = () => {
             if (!phraseCharacters.includes(key)) {
                 // After (6) incorrect guesses, the game is over.
                 if (incorrectGuesses >= 5) {
-                    setModalContent(<h1>Game Over</h1>);
+                    setModalContent(<GameOver phrase={phrase} />);
                     setIsModalOpen(true);
                 }
 

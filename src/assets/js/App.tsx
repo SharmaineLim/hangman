@@ -19,6 +19,8 @@ const App = () => {
     const [incorrectGuesses, setIncorrectGuesses] = React.useState(0);
     // Keep track of which keys have been pressed.
     const [keysPressed, setKeysPressed] = React.useState([] as string[]);
+    // Keep track of whether the game is over.
+    const [isGameOver, setIsGameOver] = React.useState(false);
     // Keep track of whether the modal is open.
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     // Modal content.
@@ -42,6 +44,7 @@ const App = () => {
                 // After (6) incorrect guesses, the game is over.
                 if (incorrectGuesses >= 5) {
                     setModalContent(<GameOver phrase={phrase} />);
+                    setIsGameOver(true);
                     setIsModalOpen(true);
                 }
 
@@ -59,7 +62,10 @@ const App = () => {
                 <Hangman incorrectGuesses={incorrectGuesses} />
                 <KeysPressedContext.Provider value={keysPressed}>
                     <Phrase phrase={phrase} />
-                    <Keyboard handler={handleKeyClick} />
+                    <Keyboard
+                        handler={handleKeyClick}
+                        isDisabled={isGameOver}
+                    />
                 </KeysPressedContext.Provider>
             </div>
         </div>

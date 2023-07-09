@@ -8,7 +8,7 @@ type CrossIconProps = {
 
 const CrossIcon = ({
     color = 'currentColor',
-    size = 20,
+    size = 24,
     ...props
 }: CrossIconProps) => {
     return (

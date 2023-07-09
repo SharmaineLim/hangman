@@ -6,11 +6,7 @@ type ResetIconProps = {
     size?: number;
 };
 
-const ResetIcon = ({
-    color = 'currentColor',
-    size = 24,
-    ...props
-}: ResetIconProps) => {
+const ResetIcon = ({ color = 'currentColor', size = 24 }: ResetIconProps) => {
     return (
         <svg
             fill={color}

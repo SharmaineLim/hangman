@@ -41,7 +41,7 @@ const App = () => {
     );
 
     // On clicking the reset button, reset the game state.
-    const handleResetClick: ReactButtonHandler = (event) => {
+    const handleResetClick: ReactButtonHandler = () => {
         setKeysPressed([]);
         setIncorrectGuesses(0);
         setIsGameOver(false);

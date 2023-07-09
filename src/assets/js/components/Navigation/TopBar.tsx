@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Control from '../Control';
-
 const CONTENT_STYLES =
     'flex items-center justify-between max-w-2xl mx-auto px-4 py-2 md:py-3';
 

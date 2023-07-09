@@ -5,9 +5,16 @@ import Hangman from './components/Hangman';
 import Keyboard from './components/Keyboard/Keyboard';
 import Modal from './components/Modal/Modal';
 import Phrase from './components/Phrase/Phrase';
+import TopBar from './components/Navigation/TopBar';
 import { KeysPressedContext } from './contexts';
 
-const MODAL_OPEN_STYLES = 'h-screen overflow-hidden';
+// App-level styles
+const BODY_STYLES = 'bg-gray-100 flex flex-col min-h-screen';
+const MODAL_OPEN_STYLES = BODY_STYLES + ' h-screen overflow-hidden';
+
+// Main content styles
+const MAIN_CONTENT_STYLES =
+    'bg-white drop-shadow flex flex-col flex-grow justify-center max-w-2xl mx-auto px-3 py-4 sm:p-6 space-y-6 sm:space-y-8 md:space-y-12';
 
 const App = () => {
     const phrase = 'guess the phrase'.toUpperCase();
@@ -54,11 +61,12 @@ const App = () => {
     };
 
     return (
-        <div className={isModalOpen ? MODAL_OPEN_STYLES : ''}>
+        <div className={isModalOpen ? MODAL_OPEN_STYLES : BODY_STYLES}>
             <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
                 {modalContent}
             </Modal>
-            <div className="space-y-12">
+            <TopBar />
+            <main className={MAIN_CONTENT_STYLES} id="main-content">
                 <Hangman incorrectGuesses={incorrectGuesses} />
                 <KeysPressedContext.Provider value={keysPressed}>
                     <Phrase phrase={phrase} />
@@ -67,7 +75,7 @@ const App = () => {
                         isDisabled={isGameOver}
                     />
                 </KeysPressedContext.Provider>
-            </div>
+            </main>
         </div>
     );
 };

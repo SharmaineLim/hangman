@@ -62,7 +62,12 @@ const App = () => {
             if (!phraseCharacters.includes(key)) {
                 // After (6) incorrect guesses, the game is over.
                 if (incorrectGuesses >= 5) {
-                    setModalContent(<GameOver phrase={phrase} />);
+                    setModalContent(
+                        <GameOver
+                            onButtonClick={handleResetClick}
+                            phrase={phrase}
+                        />,
+                    );
                     setIsGameOver(true);
                     setIsModalOpen(true);
                 }

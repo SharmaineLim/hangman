@@ -1,12 +1,17 @@
 import React from 'react';
 
+import Control from './components/Control';
 import GameOver from './components/Modal/Content/GameOver';
 import Hangman from './components/Hangman';
 import Keyboard from './components/Keyboard/Keyboard';
 import Modal from './components/Modal/Modal';
 import Phrase from './components/Phrase/Phrase';
+import ResetIcon from './components/Icon/ResetIcon';
 import TopBar from './components/Navigation/TopBar';
 import { KeysPressedContext } from './contexts';
+
+// Type aliases
+type ReactButtonHandler = React.MouseEventHandler<HTMLButtonElement>;
 
 // App-level styles
 const BODY_STYLES = 'bg-gray-100 flex flex-col min-h-screen';
@@ -35,11 +40,18 @@ const App = () => {
         null as React.ReactNode,
     );
 
+    // On clicking the reset button, reset the game state.
+    const handleResetClick: ReactButtonHandler = (event) => {
+        setKeysPressed([]);
+        setIncorrectGuesses(0);
+        setIsGameOver(false);
+        setIsModalOpen(false);
+        setModalContent(null);
+    };
+
     // On click, add the letter to the list of pressed keys, and
     // check if the letter is in the phrase.
-    const handleKeyClick: React.MouseEventHandler<HTMLButtonElement> = (
-        event,
-    ) => {
+    const handleKeyClick: ReactButtonHandler = (event) => {
         const key = (event.target as HTMLButtonElement)?.innerText;
         if (key && !keysPressed.includes(key)) {
             // Add the letter to the list of pressed keys.
@@ -65,7 +77,11 @@ const App = () => {
             <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
                 {modalContent}
             </Modal>
-            <TopBar />
+            <TopBar>
+                <Control onClick={handleResetClick}>
+                    <ResetIcon />
+                </Control>
+            </TopBar>
             <main className={MAIN_CONTENT_STYLES} id="main-content">
                 <Hangman incorrectGuesses={incorrectGuesses} />
                 <KeysPressedContext.Provider value={keysPressed}>

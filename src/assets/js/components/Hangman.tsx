@@ -75,6 +75,9 @@ const Hangman = ({ incorrectGuesses }: HangmanProps) => {
         const context = canvas.getContext('2d');
         if (!context) return;
 
+        // Clear the canvas.
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
         drawGallow(context);
         if (incorrectGuesses < 1) return;
 

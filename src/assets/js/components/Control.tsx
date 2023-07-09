@@ -1,7 +1,8 @@
 import React from 'react';
 
-const BACKGROUND_STYLES = 'bg-black opacity-80 hover:opacity-50 text-white';
-const CONTAINER_STYLES = 'flex items-center justify-center rounded-full';
+const BACKGROUND_STYLES = 'bg-black hover:opacity-50 text-white';
+const CONTAINER_STYLES =
+    'flex items-center justify-center rounded-full text-2xl';
 const SIZE_STYLES = 'h-6 sm:h-8 md:h-9 p-0.5 sm:p-1 w-6 sm:w-8 md:w-9';
 const TRANSITION_STYLES = 'transition-all';
 
